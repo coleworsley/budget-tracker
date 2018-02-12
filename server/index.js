@@ -6,7 +6,7 @@ const axios = require('axios');
 const router = require('./router');
 const app = express();
 const PORT = process.env.PORT || 5000;
-const db = require('./knex');
+const db = require('../knex');
 require('dotenv').config();
 
 app.use(express.static(path.resolve(__dirname, './frontend/build')));
@@ -14,8 +14,9 @@ app.use(bodyParser.json());
 app.use('/api', router);
 app.set('secretKey', process.env.SECRET_KEY);
 
+// All remaining requests return the React app, so it can handle routing.
 app.get('/', (req, res) => {
-  res.sendFile(path.resolve(__dirname, './frontend/build', 'index.html'));
+  res.sendFile(path.resolve(__dirname, '../frontend/build', 'index.html'));
 });
 
 app.listen(PORT, () => {

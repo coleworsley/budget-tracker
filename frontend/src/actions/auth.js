@@ -29,8 +29,8 @@ export const generateToken = () => {
         appName: appName
       })
     })
-      .then(res => res.json())
-      .then(token => dispatch(addToken(token)))
-      .catch(error => console.log(error))
+    .then(res => res.json())
+    .then(token => dispatch(addToken(token)))
+    .catch(error => console.log(error))
   }
 }

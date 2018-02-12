@@ -35,7 +35,7 @@ const generateToken = (req, res) => {
     payload.admin = true;
   }
 
-  const token = jwt.sign(payload, process.env.SECRETKEY, { expiresIn: '48h' });
+  const token = jwt.sign(payload, process.env.SECRET_KEY, { expiresIn: '48h' });
 
   for (const requiredParameter of ['email', 'appName']) {
     if (!req.body[requiredParameter]) {

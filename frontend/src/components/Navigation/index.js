@@ -13,6 +13,11 @@ class Navigation extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  componentDidMount() {
+    console.log('in componentDidMount')
+    this.props.generateToken();
+  }
+
   handleClick() {
     this.setState({ showDropDown: !this.state.showDropDown });
   }

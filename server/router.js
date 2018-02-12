@@ -4,6 +4,6 @@ const controllers = require('./controllers');
 const checkAuth = controllers.auth.checkAuth;
 
 // router.get('/[version]/[route]', controllers[route]);
-router.get('/v1/auth', controllers.auth.generateToken);
+router.post('/v1/auth', controllers.auth.generateToken);
 
 module.exports = router;
