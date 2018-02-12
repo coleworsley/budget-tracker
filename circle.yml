@@ -1,0 +1,26 @@
+machine:
+  timezone:
+    America/Denver
+  node:
+    version: 7.10.0
+  environment:
+    DATABASE_URL: postgresql://ubuntu:@127.0.0.1:5432/circle_test
+
+dependencies:
+  pre:
+    ## Install dependencies for the front-end app
+    - cd frontend/ && npm install
+
+test:
+  override:
+    # - npm run lint
+    ## - Run tests for the server app
+    - npm test
+    ## - Run tests for the front-end app
+    - cd frontend/ && npm test
+
+deployment:
+  staging:
+    branch: master
+    heroku:
+      appname: yourappnamehere
