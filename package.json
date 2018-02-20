@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "engines": {
-    "node": "6.11.x"
+    "node": "8.6.x"
   },
   "scripts": {
     "start": "node server",
@@ -13,10 +13,11 @@
   },
   "cacheDirectories": [
     "node_modules",
-    "react-ui/node_modules"
+    "frontend/node_modules"
   ],
   "dependencies": {
     "axios": "^0.17.1",
+    "bcrypt": "^1.0.3",
     "body-parser": "^1.17.2",
     "dotenv": "^4.0.0",
     "express": "^4.14.1",
@@ -28,7 +29,7 @@
     "prettier": "^1.6.1"
   },
   "lint-staged": {
-    "{server,db,react-ui}/**/*.{js,jsx,json,css}": [
+    "{server,db,frontend}/**/*.{js,jsx,json,css}": [
       "prettier --single-quote --write",
       "git add"
     ]
