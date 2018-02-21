@@ -1,8 +1,10 @@
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { generateToken } from './actions';
+import { Route } from 'react-router';
+
 import Navigation from './components/Navigation';
 import Login from './components/Login';
-import { generateToken } from './actions';
-import React, { Component } from 'react';
 import './stylesheets/App.css';
 
 class App extends Component {

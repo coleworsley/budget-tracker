@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-// import './Navigation.css';
+import Wrapper from './Wrapper';
+import './Login.css';
 
 const initialState = {
   page: 'Login',
@@ -19,6 +20,7 @@ class Login extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
   }
 
   handleSubmit(e) {
@@ -34,6 +36,10 @@ class Login extends Component {
     this.setState({
       page: page === 'Login' ? 'Sign Up' : 'Login'
     });
+  }
+
+  handleBlur(e) {
+    console.log(e);
   }
 
   renderConditionalName() {
@@ -90,48 +96,52 @@ class Login extends Component {
   }
 
   render() {
+    console.log(this.props);
     const { email, password, page } = this.state;
 
     return (
-      <div>
-        <h1 className="login__title">{page}</h1>
-        <form onSubmit={this.handleSubmit}>
-          {this.renderConditionalName()}
+      <Wrapper>
+        <div className="login">
+          <h1 className="login__title">{page}</h1>
+          <form onSubmit={this.handleSubmit}>
+            {this.renderConditionalName()}
 
-          <label htmlFor="email">Enter your Email</label>
-          <input
-            autoComplete="email"
-            className="login__input"
-            type="text"
-            placeholder="Email"
-            value={email}
-            onChange={this.handleInput}
-            name="email"
-          />
+            <label htmlFor="email">Enter your Email</label>
+            <input
+              autoComplete="email"
+              className="login__input"
+              type="text"
+              placeholder="Email"
+              value={email}
+              onChange={this.handleInput}
+              name="email"
+            />
 
-          <label htmlFor="password">Enter your Password</label>
-          <input
-            className="login__input"
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={this.handleInput}
-            name="password"
-          />
+            <label htmlFor="password">Enter your Password</label>
+            <input
+              autoComplete="current-password"
+              className="login__input"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={this.handleInput}
+              name="password"
+            />
 
-          {this.renderConditionalPassword()}
+            {this.renderConditionalPassword()}
 
-          <div className="login__buttons">
-            <button className="login__input-btn" onClick={this.handleClick}>
-              {page === 'Login' ? 'Sign Up' : 'Login'}
-            </button>
+            <div className="login__buttons">
+              <button className="login__input-btn" onClick={this.handleClick}>
+                {page === 'Login' ? 'Sign Up' : 'Login'}
+              </button>
 
-            <button className="login__input-btn" type="submit">
-              Submit
-            </button>
-          </div>
-        </form>
-      </div>
+              <button className="login__input-btn" type="submit">
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </Wrapper>
     );
   }
 }
