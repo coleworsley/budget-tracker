@@ -38,10 +38,6 @@ class Login extends Component {
     });
   }
 
-  handleBlur(e) {
-    console.log(e);
-  }
-
   renderConditionalName() {
     const { page, email, password } = this.state;
 
