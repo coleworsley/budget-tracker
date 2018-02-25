@@ -14,7 +14,6 @@ class Navigation extends Component {
   }
 
   componentDidMount() {
-    console.log('in componentDidMount')
     this.props.generateToken();
   }
 
@@ -23,15 +22,9 @@ class Navigation extends Component {
   }
 
   render() {
-    console.log(this.props);
-
     return (
       <nav className="Navigation">
-        <NavLink
-          to="/"
-          activeClassName="active"
-          className="Navigation__title"
-        >
+        <NavLink to="/" activeClassName="active" className="Navigation__title">
           AppNameHere
         </NavLink>
 
@@ -39,23 +32,33 @@ class Navigation extends Component {
           className="Navigation__dropdown"
           onClick={() => this.handleClick()}
           onBlur={() => this.setState(initialState)}
-        >
-
-        </button>
+        />
 
         <ul className="Navigation__list">
           <li>
-            <NavLink to="/" activeClassName="active" className="Navigation__link">
+            <NavLink
+              to="/"
+              activeClassName="active"
+              className="Navigation__link"
+            >
               Home
             </NavLink>
           </li>
           <li>
-            <NavLink to="/route1" activeClassName="active" className="Navigation__link">
+            <NavLink
+              to="/route1"
+              activeClassName="active"
+              className="Navigation__link"
+            >
               Route1
             </NavLink>
           </li>
           <li>
-            <NavLink to="/route2" activeClassName="active" className="Navigation__link">
+            <NavLink
+              to="/route2"
+              activeClassName="active"
+              className="Navigation__link"
+            >
               Route2
             </NavLink>
           </li>
@@ -65,16 +68,15 @@ class Navigation extends Component {
   }
 }
 
-
 const mapDispatchToProps = dispatch => {
   return {
-    generateToken: () => dispatch(generateToken()),
+    generateToken: () => dispatch(generateToken())
   };
 };
 
 const mapStateToProps = state => {
   return {
-    token: state.token,
+    token: state.token
   };
 };
 

@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import Wrapper from './Wrapper';
+import Modal from '../HigherOrder/Modal';
 import './Login.css';
 
 const initialState = {
@@ -20,7 +21,6 @@ class Login extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.handleClick = this.handleClick.bind(this);
-    this.handleBlur = this.handleBlur.bind(this);
   }
 
   handleSubmit(e) {
@@ -96,48 +96,46 @@ class Login extends Component {
     const { email, password, page } = this.state;
 
     return (
-      <Wrapper>
-        <div className="login">
-          <h1 className="login__title">{page}</h1>
-          <form onSubmit={this.handleSubmit}>
-            {this.renderConditionalName()}
+      <div className="login">
+        <h1 className="login__title">{page}</h1>
+        <form onSubmit={this.handleSubmit}>
+          {this.renderConditionalName()}
 
-            <label htmlFor="email">Enter your Email</label>
-            <input
-              autoComplete="email"
-              className="login__input"
-              type="text"
-              placeholder="Email"
-              value={email}
-              onChange={this.handleInput}
-              name="email"
-            />
+          <label htmlFor="email">Enter your Email</label>
+          <input
+            autoComplete="email"
+            className="login__input"
+            type="text"
+            placeholder="Email"
+            value={email}
+            onChange={this.handleInput}
+            name="email"
+          />
 
-            <label htmlFor="password">Enter your Password</label>
-            <input
-              autoComplete="current-password"
-              className="login__input"
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={this.handleInput}
-              name="password"
-            />
+          <label htmlFor="password">Enter your Password</label>
+          <input
+            autoComplete="current-password"
+            className="login__input"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={this.handleInput}
+            name="password"
+          />
 
-            {this.renderConditionalPassword()}
+          {this.renderConditionalPassword()}
 
-            <div className="login__buttons">
-              <button className="login__input-btn" onClick={this.handleClick}>
-                {page === 'Login' ? 'Sign Up' : 'Login'}
-              </button>
+          <div className="login__buttons">
+            <button className="login__input-btn" onClick={this.handleClick}>
+              {page === 'Login' ? 'Sign Up' : 'Login'}
+            </button>
 
-              <button className="login__input-btn" type="submit">
-                Submit
-              </button>
-            </div>
-          </form>
-        </div>
-      </Wrapper>
+            <button className="login__input-btn" type="submit">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
     );
   }
 }
@@ -152,4 +150,4 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default Modal(connect(mapStateToProps, mapDispatchToProps)(Login));

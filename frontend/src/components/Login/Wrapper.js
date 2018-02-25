@@ -16,10 +16,6 @@ class Wrapper extends Component {
     }
   }
 
-  setWrapperRef(node) {
-    this.wrapperRef = node;
-  }
-
   componentDidMount() {
     document.addEventListener('mousedown', this.handleClickOutside);
   }
@@ -29,7 +25,6 @@ class Wrapper extends Component {
   }
 
   toggleView() {
-    console.log(toggleView);
     const { hidden } = this.state;
 
     this.setState({ hidden: !hidden });
@@ -40,12 +35,18 @@ class Wrapper extends Component {
 
     const childrenWithProps = React.Children.map(children, child => {
       return React.cloneElement(child, {
-        toggleView: this.toggleView
+        test: 'test'
       });
     });
+
     return (
-      <div className="wrapper" ref={this.setWrapperRef}>
-        {this.props.children}
+      <div
+        className="wrapper"
+        ref={node => {
+          this.node = node;
+        }}
+      >
+        {childrenWithProps}
       </div>
     );
   }
@@ -62,3 +63,29 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wrapper);
+
+const makeToggleable = (WrappedComponent, color) => {
+  return class ToggleableComponent extends React.Component {
+    constructor(props) {
+      super(props);
+
+      this.state = { toggled: false };
+      this.toggleColor = this.toggleColor.bind(this);
+    }
+
+    toggleColor() {
+      this.setState({ toggled: !this.state.toggled });
+    }
+
+    render() {
+      const fontColor = this.state.toggled ? color : 'black';
+      return (
+        <WrappedComponent
+          {...this.props}
+          style={{ color: fontColor }}
+          onClick={this.toggleColor}
+        />
+      );
+    }
+  };
+};
