@@ -9,7 +9,8 @@ const PORT = process.env.PORT || 5000;
 const db = require('../knex');
 require('dotenv').config();
 
-app.use(express.static(path.resolve(__dirname, './frontend/build')));
+// Priority serve any static files.
+app.use(express.static(path.resolve(__dirname, '../frontend/build')));
 app.use(bodyParser.json());
 app.use('/api', router);
 app.set('secretKey', process.env.SECRET_KEY);

@@ -6,19 +6,17 @@ const Modal = WrappedComponent => {
       super(props);
       this.handleClickOutside = this.handleClickOutside.bind(this);
       this.toggleView = this.toggleView.bind(this);
-      this.clickTest = this.clickTest.bind(this);
-      this.state = { hidden: true };
+      this.state = { hidden: false };
     }
 
     handleClickOutside(e) {
-      if (this.node && !this.node.contains(e.target)) {
-        console.log('clicked outside');
-        // this.setState({ hidden: true });
-      }
-    }
+      const { node, state: { hidden } } = this;
 
-    setWrapperRef(node) {
-      this.wrapperRef = node;
+      if (node && !hidden && !node.contains(e.target)) {
+        console.log('clicked outside');
+
+        this.setState({ hidden: false });
+      }
     }
 
     componentDidMount() {
@@ -30,17 +28,10 @@ const Modal = WrappedComponent => {
     }
 
     toggleView() {
-      const { hidden } = this.state;
-
-      this.setState({ hidden: !hidden });
-    }
-
-    clickTest() {
-      console.log('clicked');
+      this.setState({ hidden: false });
     }
 
     render() {
-      console.log(this);
       return (
         <div
           className="modal"
@@ -48,7 +39,7 @@ const Modal = WrappedComponent => {
             this.node = node;
           }}
         >
-          <WrappedComponent {...this.props} />
+          <WrappedComponent {...this.props} toggleView={this.toggle} />
           <button>Close</button>
         </div>
       );
