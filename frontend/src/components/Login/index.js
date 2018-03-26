@@ -75,7 +75,7 @@ class Login extends Component {
 
     if (page === 'Sign Up') {
       return (
-        <div>
+        <div className="login__checkpassword">
           <label htmlFor="password">Re-Enter your Password</label>
           <input
             autoComplete="new-password"

@@ -35,7 +35,7 @@ class Wrapper extends Component {
 
     const childrenWithProps = React.Children.map(children, child => {
       return React.cloneElement(child, {
-        test: 'test'
+        toggleView: this.toggleView
       });
     });
 
@@ -64,28 +64,28 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, mapDispatchToProps)(Wrapper);
 
-const makeToggleable = (WrappedComponent, color) => {
-  return class ToggleableComponent extends React.Component {
-    constructor(props) {
-      super(props);
-
-      this.state = { toggled: false };
-      this.toggleColor = this.toggleColor.bind(this);
-    }
-
-    toggleColor() {
-      this.setState({ toggled: !this.state.toggled });
-    }
-
-    render() {
-      const fontColor = this.state.toggled ? color : 'black';
-      return (
-        <WrappedComponent
-          {...this.props}
-          style={{ color: fontColor }}
-          onClick={this.toggleColor}
-        />
-      );
-    }
-  };
-};
+// const makeToggleable = (WrappedComponent, color) => {
+//   return class ToggleableComponent extends React.Component {
+//     constructor(props) {
+//       super(props);
+//
+//       this.state = { toggled: false };
+//       this.toggleColor = this.toggleColor.bind(this);
+//     }
+//
+//     toggleColor() {
+//       this.setState({ toggled: !this.state.toggled });
+//     }
+//
+//     render() {
+//       const fontColor = this.state.toggled ? color : 'black';
+//       return (
+//         <WrappedComponent
+//           {...this.props}
+//           style={{ color: fontColor }}
+//           onClick={this.toggleColor}
+//         />
+//       );
+//     }
+//   };
+// };

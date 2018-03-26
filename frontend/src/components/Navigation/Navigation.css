@@ -1,0 +1,51 @@
+.Navigation {
+  padding: 10px;
+  height: 60px;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 2px 2px 5px #161616;
+  background-color: #333333;
+}
+
+.Navigation__title {
+  margin: 10px;
+  color: #ffffff;
+}
+
+.Navigation__title:visited {
+  color: #ffffff;
+}
+
+.Navigation__dropdown {
+  display: none;
+}
+
+.Navigation__list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.Navigation__link {
+  margin: 10px;
+}
+
+@media (max-width: 400px) {
+  .Navigation__list {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    flex-direction: column;
+  }
+
+  .Navigation__dropdown {
+    display: block;
+  }
+
+  .Navigation {
+    color: blue;
+  }
+}

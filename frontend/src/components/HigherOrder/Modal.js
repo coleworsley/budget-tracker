@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Modal.css';
 
 const Modal = WrappedComponent => {
   return class Wrapper extends Component {

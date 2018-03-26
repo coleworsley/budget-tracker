@@ -21,7 +21,24 @@ class Navigation extends Component {
     this.setState({ showDropDown: !this.state.showDropDown });
   }
 
+  renderProfile(signedIn) {
+    let content = signedIn ? (
+      <div>
+        <button>Sign In</button>
+        <button>Sign Up</button>
+      </div>
+    ) : (
+      <div>
+        <h2>Cole Worsley</h2>
+      </div>
+    );
+
+    return content;
+  }
+
   render() {
+    const signedIn = this.props.token.length > 0;
+
     return (
       <nav className="Navigation">
         <NavLink to="/" activeClassName="active" className="Navigation__title">
@@ -62,6 +79,7 @@ class Navigation extends Component {
               Route2
             </NavLink>
           </li>
+          <li>{this.renderProfile(signedIn)}</li>
         </ul>
       </nav>
     );

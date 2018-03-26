@@ -1,3 +1,19 @@
 .login {
-  background-color: red;
+  background-color: #e0e0e0;
+  margin: 40px 20px 0px;
+  border-radius: 5px;
+  height: 400px;
+}
+
+.login form,
+.login__name,
+.login__checkpassword {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.login__buttons {
+  text-align: center;
 }
