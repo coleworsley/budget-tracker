@@ -38,99 +38,66 @@ class Login extends Component {
     });
   }
 
-  renderConditionalName() {
-    const { page, email, password } = this.state;
-
-    if (page === 'Sign Up') {
-      return (
-        <div className="login__name">
-          <label htmlFor="email">First Name</label>
-          <input
-            autoComplete="given-name"
-            className="login__input"
-            type="text"
-            placeholder="First Name"
-            value={email}
-            onChange={this.handleInput}
-            name="firstName"
-          />
-
-          <label htmlFor="password">Last Name</label>
-          <input
-            autoComplete="family-name"
-            className="login__input"
-            type="password"
-            placeholder="Last Name"
-            value={password}
-            onChange={this.handleInput}
-            name="lastName"
-          />
-        </div>
-      );
-    }
-  }
-
-  renderConditionalPassword() {
-    const { page, confirmPassword } = this.state;
-
-    if (page === 'Sign Up') {
-      return (
-        <div className="login__checkpassword">
-          <label htmlFor="password">Re-Enter your Password</label>
-          <input
-            autoComplete="new-password"
-            className="login__input"
-            type="password"
-            placeholder="Confirm Password"
-            value={confirmPassword}
-            onChange={this.handleInput}
-            name="confirmPassword"
-          />
-        </div>
-      );
-    }
-  }
-
   render() {
-    console.log(this.props);
-    const { email, password, page } = this.state;
+    const { email, password, page, confirmPassword } = this.state;
 
     return (
       <div className="login">
         <h1 className="login__title">{page}</h1>
         <form onSubmit={this.handleSubmit}>
-          {this.renderConditionalName()}
+          <div className="input-box">
+            <label htmlFor="email" className="input-label">
+              Enter your Email
+            </label>
+            <input
+              autoComplete="email"
+              className="input"
+              type="text"
+              placeholder="Email"
+              value={email}
+              onChange={this.handleInput}
+              name="email"
+            />
+          </div>
 
-          <label htmlFor="email">Enter your Email</label>
-          <input
-            autoComplete="email"
-            className="login__input"
-            type="text"
-            placeholder="Email"
-            value={email}
-            onChange={this.handleInput}
-            name="email"
-          />
+          <div className="input-box">
+            <label htmlFor="password" className="input-label">
+              Enter your Password
+            </label>
+            <input
+              autoComplete="current-password"
+              className="input"
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={this.handleInput}
+              name="password"
+            />
+          </div>
 
-          <label htmlFor="password">Enter your Password</label>
-          <input
-            autoComplete="current-password"
-            className="login__input"
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={this.handleInput}
-            name="password"
-          />
+          {page === 'Sign Up' ? (
+            <div className="input-box">
+              <label htmlFor="password" className="input-label">
+                Re-Enter your Password
+              </label>
+              <input
+                autoComplete="new-password"
+                className="input"
+                type="password"
+                placeholder="Confirm Password"
+                value={confirmPassword}
+                onChange={this.handleInput}
+                name="confirmPassword"
+              />
+            </div>
+          ) : null}
 
-          {this.renderConditionalPassword()}
-
-          <div className="login__buttons">
-            <button className="login__input-btn" onClick={this.handleClick}>
+          <div className="btn-box">
+            <button className="input-btn" onClick={this.handleClick}>
               {page === 'Login' ? 'Sign Up' : 'Login'}
             </button>
 
-            <button className="login__input-btn" type="submit">
+            <button className="input-btn" type="submit">
               Submit
             </button>
           </div>
