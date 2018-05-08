@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-import Wrapper from './Wrapper';
 import Modal from '../HigherOrder/Modal';
-import './Login.css';
+import InputBox from '../General/InputBox';
+import './index.css';
 
 const initialState = {
   page: 'Login',
@@ -45,52 +45,42 @@ class Login extends Component {
       <div className="login">
         <h1 className="login__title">{page}</h1>
         <form onSubmit={this.handleSubmit}>
-          <div className="input-box">
-            <label htmlFor="email" className="input-label">
-              Enter your Email
-            </label>
-            <input
-              autoComplete="email"
-              className="input"
-              type="text"
-              placeholder="Email"
-              value={email}
-              onChange={this.handleInput}
-              name="email"
-            />
-          </div>
-
-          <div className="input-box">
-            <label htmlFor="password" className="input-label">
-              Enter your Password
-            </label>
-            <input
-              autoComplete="current-password"
-              className="input"
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={this.handleInput}
-              name="password"
-            />
-          </div>
-
-          {page === 'Sign Up' ? (
-            <div className="input-box">
-              <label htmlFor="password" className="input-label">
-                Re-Enter your Password
-              </label>
-              <input
-                autoComplete="new-password"
-                className="input"
-                type="password"
-                placeholder="Confirm Password"
-                value={confirmPassword}
-                onChange={this.handleInput}
-                name="confirmPassword"
-              />
-            </div>
-          ) : null}
+          <InputBox
+            {...{
+              label: 'Enter your email',
+              placeholder: 'Email',
+              autoComplete: 'email',
+              type: 'text',
+              name: 'email',
+              value: email,
+              onChange: this.handleInput,
+              display: 'block'
+            }}
+          />
+          <InputBox
+            {...{
+              label: 'Enter your Password',
+              placeholder: 'Email',
+              autoComplete: 'current-password',
+              type: 'password',
+              name: 'password',
+              value: password,
+              onChange: this.handleInput,
+              display: 'block'
+            }}
+          />
+          <InputBox
+            {...{
+              label: 'Re-Enter your Password',
+              placeholder: 'Email',
+              autoComplete: 'current-password',
+              type: 'password',
+              name: 'confirmPassword',
+              value: confirmPassword,
+              onChange: this.handleInput,
+              display: page === 'Sign Up' ? 'block' : 'none'
+            }}
+          />
 
           <div className="btn-box">
             <button className="input-btn" onClick={this.handleClick}>
