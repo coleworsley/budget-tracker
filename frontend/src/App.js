@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { generateToken } from './actions';
 import { Route } from 'react-router';
 
+import PlaidLink from './containers/PlaidLink/Loadable'
 import Navigation from './components/Navigation';
 import Login from './components/Login';
 import './stylesheets/App.css';
@@ -13,6 +14,7 @@ class App extends Component {
       <div className="App">
         <Navigation />
         <Login />
+        <PlaidLink />
       </div>
     );
   }
