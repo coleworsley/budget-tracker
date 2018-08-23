@@ -29,23 +29,6 @@ export default class Plaid extends React.Component {
     },
   };
 
-  onScriptLoad() {
-    window.handler = window.Plaid.create({
-      apiVersion: this.props.apiVersion,
-      clientName: this.props.clientName,
-      env: this.props.env,
-      key: this.props.publicKey,
-      onExit: this.props.onExit,
-      onLoad: this.handleLinkOnLoad,
-      onEvent: this.props.onEvent,
-      onSuccess: this.props.onSuccess,
-      product: this.props.product,
-      selectAccount: this.props.selectAccount,
-      token: this.props.token,
-      webhook: this.props.webhook,
-    });
-  }
-
   static propTypes = {
     apiVersion: PropTypes.string,
     clientName: PropTypes.string.isRequired,
@@ -66,7 +49,25 @@ export default class Plaid extends React.Component {
     className: PropTypes.string,
   }
 
+  onScriptLoad() {
+    window.handler = window.Plaid.create({
+      apiVersion: this.props.apiVersion,
+      clientName: this.props.clientName,
+      env: this.props.env,
+      key: this.props.publicKey,
+      onExit: this.props.onExit,
+      onLoad: this.handleLinkOnLoad,
+      onEvent: this.props.onEvent,
+      onSuccess: this.props.onSuccess,
+      product: this.props.product,
+      selectAccount: this.props.selectAccount,
+      token: this.props.token,
+      webhook: this.props.webhook,
+    });
+  }
+
   render() {
+    console.log('rendered')
     return (
       <div>
         <Script
